@@ -16,4 +16,5 @@ public class StatEntry {
     public int getJerseyNumber() { return jerseyNumber; }
     public String getStatType() { return statType; }
     public LocalDate getDate() { return date; }
+    public void setJerseyNumber(int jerseyNumber) { this.jerseyNumber = jerseyNumber; }
 }

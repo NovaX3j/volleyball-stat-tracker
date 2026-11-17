@@ -9,4 +9,6 @@ public class Player {
 
     public String getName() { return name; }
     public int getJerseyNumber() { return jerseyNumber; }
+    public void setName(String name) { this.name = name; }
+    public void setJerseyNumber(int jerseyNumber) { this.jerseyNumber = jerseyNumber; }
 }
