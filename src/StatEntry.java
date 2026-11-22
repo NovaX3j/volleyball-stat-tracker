@@ -14,6 +14,16 @@ public class StatEntry {
         this.date = date;
     }
 
+    // Checks if a stat is valid by comparing it to the list of valid stats. Returns true if valid and false otherwise.
+    public static boolean isValidStat(String stat) {
+        for (String valid : VALID_STATS) {
+            if (valid.equals(stat)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getJerseyNumber() { return jerseyNumber; }
     public String getStatType() { return statType; }
     public LocalDate getDate() { return date; }

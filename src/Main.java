@@ -7,6 +7,7 @@ public class Main {
 
     // The main methos.
     public static void main(String[] args) {
+        DataStore.load(roster);
         boolean running = true;
         while (running) {
             printMenu();
@@ -44,6 +45,7 @@ public class Main {
         if (roster.findName(name) != null) {
             IO.println("A player named " + name + " already exists.");
         } else if (roster.addPlayer(name, jersey)) {
+            DataStore.save(roster);
             IO.println("Added " + name + " (#" + jersey + ").");
         } else {
             IO.println("Jersey #" + jersey + " is already taken.");
@@ -57,6 +59,7 @@ public class Main {
             return;
         }
         roster.removePlayer(player.getJerseyNumber());
+        DataStore.save(roster);
         IO.println("Removed " + player.getName() + " (#" + player.getJerseyNumber() + ") and their stats.");
     }
 
@@ -69,6 +72,7 @@ public class Main {
         String newName = input.readName("New name: ");
         int newJersey = input.readInt("New jersey number (0-99): ", 0, 99);
         if (roster.editPlayer(oldJersey, newName, newJersey)) {
+            DataStore.save(roster);
             IO.println("Updated player.");
         } else {
             IO.println("That name or jersey number belongs to another player.");
@@ -94,6 +98,7 @@ public class Main {
         String stat = input.readStat("Stat (" + String.join("/", StatEntry.VALID_STATS) + "): ");
         LocalDate date = input.readDate("Date (yyyy-MM-dd, blank for today): ");
         roster.logStat(jersey, stat, date);
+        DataStore.save(roster);
         IO.println("Logged " + stat + " for #" + jersey + " on " + date + ".");
     }
 
@@ -109,7 +114,7 @@ public class Main {
         }
     }
 
-    // Shared by remove and view-stats so the jersey-or-name choice is written once
+    // Shared by remove and view-stats so the jersey/name choice is written once
     private static Player findPlayerMenu(String action) {
         int method = input.readInt(action + " by 1) jersey number or 2) name: ", 1, 2);
         if (method == 1) {

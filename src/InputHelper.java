@@ -22,10 +22,14 @@ public class InputHelper {
     public String readName(String prompt) {
         while (true) {
             String line = IO.readln(prompt).trim();
-            if (!line.isEmpty()) {
+            if (line.isEmpty()) {
+                IO.println("Name cannot be empty.");
+            } else if (line.contains(",")) {
+                // Commas would break the CSV files that DataStore writes
+                IO.println("Name cannot contain a comma.");
+            } else {
                 return line;
             }
-            IO.println("Name cannot be empty.");
         }
     }
 
@@ -33,10 +37,8 @@ public class InputHelper {
     public String readStat(String prompt) {
         while (true) {
             String line = IO.readln(prompt).trim().toLowerCase();
-            for (String valid : StatEntry.VALID_STATS) {
-                if (valid.equals(line)) {
-                    return line;
-                }
+            if (StatEntry.isValidStat(line)) {
+                return line;
             }
             IO.println("Stat must be one of: " + String.join(", ", StatEntry.VALID_STATS));
         }
