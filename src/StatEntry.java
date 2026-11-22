@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 
+// The StatEntry class holds the structure of a stat entry for a certain player.
 public class StatEntry {
     public static final String[] VALID_STATS = {"kill", "ace", "block", "dig", "assist"};
 

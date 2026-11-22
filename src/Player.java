@@ -1,3 +1,5 @@
+// The player class holds the player number and name.
+
 public class Player {
     private String name;
     private int jerseyNumber;
