@@ -51,8 +51,6 @@ chmod +x scripts/weekly_report.sh
 cat data/weekly_report.txt
 ```
 
-To run the report automatically every Sunday at 8:00 PM, copy the last line of `scripts/crontab.example` into `crontab -e` and change `/home/vedant` to your own home folder.
-
 ## Future Plans:
 1. Team totals
 2. Leaderboard (top player per stat)
