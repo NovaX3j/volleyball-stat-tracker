@@ -97,9 +97,12 @@ public class Main {
         }
         String stat = input.readStat("Stat (" + String.join("/", StatEntry.VALID_STATS) + "): ");
         LocalDate date = input.readDate("Date (yyyy-MM-dd, blank for today): ");
-        roster.logStat(jersey, stat, date);
+        int count = input.readInt("How many (1-50): ", 1, 50);
+        for (int i = 0; i < count; i++) {
+            roster.logStat(jersey, stat, date);
+        }
         DataStore.save(roster);
-        IO.println("Logged " + stat + " for #" + jersey + " on " + date + ".");
+        IO.println("Logged " + count + " " + stat + "(s) for #" + jersey + " on " + date + ".");
     }
 
     private static void viewStatsMenu() {
