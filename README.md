@@ -56,6 +56,6 @@ cat data/weekly_report.txt
 2. Leaderboard (top player per stat)
 3. Multi-match / season view
 
-## Demo
+## Video
 
-Demo: link coming soon
+Video: https://www.youtube.com/watch?v=rUH_j9Hxt1w
