@@ -53,9 +53,10 @@ public class Main {
     }
 
     private static void removePlayerMenu() {
-        Player player = findPlayerMenu("Remove");
+        int jersey = input.readInt("Jersey number: ", 0, 99);
+        Player player = roster.findJerseyNumber(jersey);
         if (player == null) {
-            IO.println("Player not found.");
+            IO.println("No player with jersey #" + jersey + ".");
             return;
         }
         roster.removePlayer(player.getJerseyNumber());
@@ -106,23 +107,15 @@ public class Main {
     }
 
     private static void viewStatsMenu() {
-        Player player = findPlayerMenu("Search");
+        int jersey = input.readInt("Jersey number: ", 0, 99);
+        Player player = roster.findJerseyNumber(jersey);
         if (player == null) {
-            IO.println("Player not found.");
+            IO.println("No player with jersey #" + jersey + ".");
             return;
         }
         IO.println(player.getName() + " (#" + player.getJerseyNumber() + ")");
         for (String stat : StatEntry.VALID_STATS) {
             IO.println("  " + stat + ": " + roster.countStat(player.getJerseyNumber(), stat));
         }
-    }
-
-    // Shared by remove and view-stats so the jersey/name choice is written once
-    private static Player findPlayerMenu(String action) {
-        int method = input.readInt(action + " by 1) jersey number or 2) name: ", 1, 2);
-        if (method == 1) {
-            return roster.findJerseyNumber(input.readInt("Jersey number: ", 0, 99));
-        }
-        return roster.findName(input.readName("Player name: "));
     }
 }
